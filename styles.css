@@ -1,0 +1,69 @@
+.calculator {
+  display: flex;
+  flex-direction: column;
+  background-color: #1C2833;
+  width: 400px;
+  height: auto; /* this container itself shrinks/expands based on the contents (display & buttons) inside of it */
+  align-items: center;
+  border: 2px solid #1C2833;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers horizontally */
+  min-height: 100vh; /* ensures the body takes up full height of the screen */
+  justify-content: center;
+}
+
+.display {
+  display: flex;
+  flex: 1; /* takes up 1 portion of available space */
+  background-color: #1C2833;
+  width: 100%;
+  align-items: center; /* centers them vertically */
+  justify-content: flex-end; /* send numbers to the far right */
+  font-size: 30px;
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; /* centers horizontally */
+  flex: 4; /* takes up 3 portions of available space */
+  width: 100%;
+  gap: 3px;
+  justify-content: center; /*centers vertically */
+  align-content: flex-start; /*aligning all the rows of numbers (squeezes all the buttons together vertically, reducing the spaces in between) */
+}
+
+button {
+  height: 70px;
+  flex: 1 1 22%;
+  border: none;
+  font-size: 25px;
+  border-radius: 5%;
+}
+
+button.clear {
+  flex: 1 1 72%;
+  background-color: #5DADE2;
+}
+
+button.zero {
+  flex: 1 1 47%;
+}
+
+button.operator {
+  background-color: #F39C12;
+}
+
+button.equals {
+  background-color: #F39C12;
+}
+
+
+
+
+
