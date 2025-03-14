@@ -21,6 +21,7 @@ body {
   flex: 1; /* takes up 1 portion of available space */
   background-color: #1C2833;
   width: 100%;
+  min-height: 85px;
   align-items: center; /* centers them vertically */
   justify-content: flex-end; /* send numbers to the far right */
   font-size: 30px;
@@ -31,7 +32,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center; /* centers horizontally */
-  flex: 4; /* takes up 3 portions of available space */
+  flex: 3; /* takes up 3 portions of available space */
   width: 100%;
   gap: 3px;
   justify-content: center; /*centers vertically */
@@ -44,6 +45,7 @@ button {
   border: none;
   font-size: 25px;
   border-radius: 5%;
+  background-color: #FAFAFA;
 }
 
 button.clear {
