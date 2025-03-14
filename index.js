@@ -11,6 +11,7 @@ const divide = (a,b) => ((b === 0) ? "Are you dumb?" : a /b);
 const numberButtons = document.querySelectorAll(".number");
 const displayElement = document.querySelector(".display p");
 const operatorButtons = document.querySelectorAll(".operator");
+const clearButton = document.querySelector(".clear");
 
 function operate(a, b, op) {
   switch (op) {
@@ -37,7 +38,11 @@ function handleNumberClick (event) {
 }
 
 function updateDisplay(value) {
-  displayElement.textContent += value;
+  if (value === "") {
+    displayElement.textContent = "" //Clears the display
+  } else {
+    displayElement.textContent += value; //Appends numbers for more than 1 digit
+  }
 }
 
 operatorButtons.forEach ( (button) => {
@@ -51,3 +56,7 @@ function handleOperatorClick (event) {
   op = event.target.textContent;
   displayElement.textContent = ""; 
 }
+
+clearButton.addEventListener("click", () => updateDisplay(""));
+
+
