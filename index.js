@@ -10,7 +10,7 @@ const divide = (a,b) => ((b === 0) ? "Are you dumb?" : a /b);
 
 const numberButtons = document.querySelectorAll(".number");
 const displayElement = document.querySelector(".display p");
-const operatorButtons = document.querySelector(".operator");
+const operatorButtons = document.querySelectorAll(".operator");
 
 function operate(a, b, op) {
   switch (op) {
@@ -45,6 +45,8 @@ operatorButtons.forEach ( (button) => {
 })
 
 function handleOperatorClick (event) {
+  if (firstNum !== "") return; //When the operator button is clicked, this function executes. But a user may try entering back to back operators. To prevent this, say "if firstNum already exists, then you can't do that, and the function exits immediately"
+
   firstNum = displayElement.textContent;
   op = event.target.textContent;
   displayElement.textContent = ""; 
