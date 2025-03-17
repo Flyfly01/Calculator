@@ -13,6 +13,7 @@ const displayElement = document.querySelector(".display p");
 const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.querySelector(".clear");
 const equalButton = document.querySelector(".equals");
+const decimalButton = document.querySelector(".decimal");
 
 function operate(a, b, op) {
   switch (op) {
@@ -68,6 +69,22 @@ function executeCalc() {
 
   let result = operate(a,b,op)
   updateDisplay(result);
+}
+
+decimalButton.addEventListener("click", addDecimalPoint);
+
+function addDecimalPoint() {
+  if (operator === "") { //This means we're working on the firstNum
+    if (!firstNum.includes(".")) {
+      firstNum += ".";
+      updateDisplay(firstNum);
+    } else { //We're on secondNum now
+      if (!secondNum.includes(".")) {
+        secondNum += ".";
+        updateDisplay(secondNum);
+      }
+    }
+  }
 }
 
 
