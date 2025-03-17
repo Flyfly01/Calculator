@@ -1,17 +1,18 @@
 let a = null;
 let b = null;
-let firstNum = "";
 let op = "";
+let firstNum = "";
 
 const add = (a,b) => a + b;
 const subtract = (a,b) => a - b;
 const multiply = (a,b) => a * b;
-const divide = (a,b) => ((b === 0) ? "Are you dumb?" : a /b);
+const divide = (a,b) => ((b === 0) ? "Are you dumb?" : a/b);
 
 const numberButtons = document.querySelectorAll(".number");
 const displayElement = document.querySelector(".display p");
 const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.querySelector(".clear");
+const equalButton = document.querySelector(".equals");
 
 function operate(a, b, op) {
   switch (op) {
@@ -54,9 +55,19 @@ function handleOperatorClick (event) {
 
   firstNum = displayElement.textContent;
   op = event.target.textContent;
-  displayElement.textContent = ""; 
+  updateDisplay("");
 }
 
 clearButton.addEventListener("click", () => updateDisplay(""));
+
+equalButton.addEventListener("click", executeCalc);
+
+function executeCalc() {
+  let a = Number(firstNum);
+  let b = Number(secondNum);
+
+  let result = operate(a,b,op)
+  updateDisplay(result);
+}
 
 
