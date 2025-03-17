@@ -54,8 +54,13 @@ operatorButtons.forEach ( (button) => {
 function handleOperatorClick (event) {
   if (firstNum !== "") return; //When the operator button is clicked, this function executes. But a user may try entering back to back operators. To prevent this, say "if firstNum already exists, then you can't do that, and the function exits immediately"
 
-  firstNum = displayElement.textContent;
-  op = event.target.textContent;
+  if (firstNum && op) {
+    secondNum = displayElement.textContent;
+    executeCalc();
+  }
+
+  firstNum = displayElement.textContent; //This is the result from the first part of a chaining calc (3 + 5 - 2)
+  op = event.target.textContent; //Stores your new operator
   updateDisplay("");
 }
 
@@ -74,7 +79,7 @@ function executeCalc() {
 decimalButton.addEventListener("click", addDecimalPoint);
 
 function addDecimalPoint() {
-  if (operator === "") { //This means we're working on the firstNum
+  if (op === "") { //This means we're working on the firstNum
     if (!firstNum.includes(".")) {
       firstNum += ".";
       updateDisplay(firstNum);
