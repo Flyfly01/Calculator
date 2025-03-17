@@ -69,11 +69,17 @@ clearButton.addEventListener("click", () => updateDisplay(""));
 equalButton.addEventListener("click", executeCalc);
 
 function executeCalc() {
+  if (firstNum === "" || secondNum === "") return;
+
   let a = Number(firstNum);
   let b = Number(secondNum);
 
   let result = operate(a,b,op)
+
   updateDisplay(result);
+  firstNum = result;
+  secondNum = "";
+  op = "";
 }
 
 decimalButton.addEventListener("click", addDecimalPoint);
