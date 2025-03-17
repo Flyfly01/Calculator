@@ -52,7 +52,7 @@ operatorButtons.forEach ( (button) => {
 })
 
 function handleOperatorClick (event) {
-  if (firstNum !== "") return; //When the operator button is clicked, this function executes. But a user may try entering back to back operators. To prevent this, say "if firstNum already exists, then you can't do that, and the function exits immediately"
+  if (firstNum !== "" && displayElement.textContent === "") return;
 
   if (firstNum && op) {
     secondNum = displayElement.textContent;
@@ -61,7 +61,7 @@ function handleOperatorClick (event) {
 
   firstNum = displayElement.textContent; //This is the result from the first part of a chaining calc (3 + 5 - 2)
   op = event.target.textContent; //Stores your new operator
-  updateDisplay("");
+  updateDisplay(""); //Clears the display for your secondNum input
 }
 
 clearButton.addEventListener("click", () => updateDisplay(""));
