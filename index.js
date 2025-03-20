@@ -1,7 +1,8 @@
 let a = null;
 let b = null;
 let op = "";
-let firstNum = "";
+let firstNum = ""
+let secondNum = "";
 
 const add = (a,b) => a + b;
 const subtract = (a,b) => a - b;
@@ -54,7 +55,7 @@ operatorButtons.forEach ( (button) => {
 function handleOperatorClick (event) {
   if (firstNum !== "" && displayElement.textContent === "") return;
 
-  if (firstNum && op) {
+  if (firstNum !== "" && op !== "" && displayElement.textContent !== "") {
     secondNum = displayElement.textContent;
     executeCalc();
   }
@@ -64,11 +65,18 @@ function handleOperatorClick (event) {
   updateDisplay(""); //Clears the display for your secondNum input
 }
 
-clearButton.addEventListener("click", () => updateDisplay(""));
+clearButton.addEventListener("click", () => {
+  firstNum = "";
+  secondNum = "";
+  op = "";
+  updateDisplay("");
+})
 
 equalButton.addEventListener("click", executeCalc);
 
 function executeCalc() {
+  secondNum = displayElement.textContent;
+
   if (firstNum === "" || secondNum === "") return;
 
   let a = Number(firstNum);
@@ -76,7 +84,7 @@ function executeCalc() {
 
   let result = operate(a,b,op)
 
-  updateDisplay(result);
+  displayElement.textContent = result;
   firstNum = result;
   secondNum = "";
   op = "";
