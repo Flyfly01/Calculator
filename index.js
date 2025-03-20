@@ -53,7 +53,7 @@ operatorButtons.forEach ( (button) => {
 })
 
 function handleOperatorClick (event) {
-  if (firstNum !== "" && displayElement.textContent === "") return;
+  if (firstNum !== "" && displayElement.textContent === "") return; //prevents consecutive operators
 
   if (firstNum !== "" && op !== "" && displayElement.textContent !== "") {
     secondNum = displayElement.textContent;
@@ -77,7 +77,7 @@ equalButton.addEventListener("click", executeCalc);
 function executeCalc() {
   secondNum = displayElement.textContent;
 
-  if (firstNum === "" || secondNum === "") return;
+  if (firstNum === "" || secondNum === "") return; //If either number doesn;t exist, exit
 
   let a = Number(firstNum);
   let b = Number(secondNum);
@@ -93,17 +93,8 @@ function executeCalc() {
 decimalButton.addEventListener("click", addDecimalPoint);
 
 function addDecimalPoint() {
-  if (op === "") { //This means we're working on the firstNum
-    if (!firstNum.includes(".")) {
-      firstNum += ".";
-      updateDisplay(firstNum);
-    } else { //We're on secondNum now
-      if (!secondNum.includes(".")) {
-        secondNum += ".";
-        updateDisplay(secondNum);
-      }
-    }
+  if (!displayElement.textContent.includes(".")) {
+    displayElement.textContent += ".";
   }
 }
-
 
