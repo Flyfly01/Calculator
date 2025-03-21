@@ -1,8 +1,9 @@
 let a = null;
 let b = null;
 let op = "";
-let firstNum = ""
+let firstNum = "";
 let secondNum = "";
+let resetDisplay = false; 
 
 const add = (a,b) => a + b;
 const subtract = (a,b) => a - b;
@@ -41,6 +42,11 @@ function handleNumberClick (event) {
 }
 
 function updateDisplay(value) {
+  if (resetDisplay) {
+    displayElement.textContent = "";
+    resetDisplay = false;
+  }
+
   if (value === "") {
     displayElement.textContent = "" //Clears the display
   } else {
@@ -88,6 +94,7 @@ function executeCalc() {
   firstNum = result;
   secondNum = "";
   op = "";
+  resetDisplay = true;
 }
 
 decimalButton.addEventListener("click", addDecimalPoint);
