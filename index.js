@@ -47,11 +47,16 @@ function updateDisplay(value) {
     resetDisplay = false;
   }
 
+  if (displayElement.textContent.length >= 12) return; //Prevents adding more than 12 characters
+
+  if (value === "." && displayElement.textContent.includes(".")) return; //Prevents more than 1 decimal point
+
   if (value === "") {
-    displayElement.textContent = "" //Clears the display
-  } else {
-    displayElement.textContent += value; //Appends numbers for more than 1 digit
-  }
+    displayElement.textContent = ""; //Clears the display
+    return; //No longer an if else block, need to "return" to stop the execution or else it will append an empty string onto displayElement.textContent
+  } 
+  
+  displayElement.textContent += value; //Appends numbers for more than 1 digit
 }
 
 operatorButtons.forEach ( (button) => {
@@ -88,7 +93,8 @@ function executeCalc() {
   let a = Number(firstNum);
   let b = Number(secondNum);
 
-  let result = operate(a,b,op)
+  let result = operate(a,b,op);
+  result = roundResult(result);
 
   displayElement.textContent = result;
   firstNum = result;
@@ -97,11 +103,15 @@ function executeCalc() {
   resetDisplay = true;
 }
 
+function roundResult(result) {
+  return Number(result.toPrecision(11));
+}
+
 decimalButton.addEventListener("click", addDecimalPoint);
 
 function addDecimalPoint() {
   if (!displayElement.textContent.includes(".")) {
-    displayElement.textContent += ".";
+    updateDisplay(".");
   }
 }
 
